@@ -1,0 +1,21 @@
+<label>Search for something:</label>
+<input type="text"
+class="form-control"
+[(ngModel)]="input"
+(input) = "checkString(input)">
+<p>
+    {{ input }}
+</p>
+<button class="btn"
+[disabled]="stringIsEmpty"
+(click)="onSearch()">OK
+</button>
+<p [innerText] = statusMessage>
+    <!-- above line is DATA BINDING, below line is STRING INTERPOLATION -->
+    {{ statusMessage }}
+</p>
+<ul>
+    <li *ngFor="let entry of searchHistory">
+        {{ entry }}
+    </li>
+</ul>
