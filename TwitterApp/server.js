@@ -3,7 +3,10 @@ const Twitter = require('twit');
 
 const app = express();
 const client = new Twitter({
-
+  consumer_key: 'HUTbbE1ovbgBch4V537weCiVS',
+  consumer_secret: 'MzPSO5S7xWTRIjGCGbXFX7iaFZ6REUuQStBZLdsRejCvuIntXA',
+  access_token: '790339097046810624-xWel9we1G0dUvH7Uu0Tg8LrOI3nquI8',
+  access_token_secret: 'zOAQuyARhciE1CFOez7rt3AZfFL4DMii4XcHNPh0AyjvP'
 });
 
 app.use(require('cors')());
