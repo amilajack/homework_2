@@ -1,3 +1,10 @@
-<p>
-  window works!
-</p>
+<div class = "window" *ngIf="user">
+  User: @ {{user.screen_name}}
+  <br>
+  Name: {{user.name}}
+  <br>
+  Location: {{ user.location }}
+  <br>
+  Description: {{user.description}}
+  <br>
+  </div>
