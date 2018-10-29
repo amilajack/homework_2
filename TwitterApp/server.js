@@ -3,10 +3,7 @@ const Twitter = require('twit');
 
 const app = express();
 const client = new Twitter({
-  consumer_key: 'HUTbbE1ovbgBch4V537weCiVS',
-  consumer_secret: 'MzPSO5S7xWTRIjGCGbXFX7iaFZ6REUuQStBZLdsRejCvuIntXA',
-  access_token: '790339097046810624-xWel9we1G0dUvH7Uu0Tg8LrOI3nquI8',
-  access_token_secret: 'zOAQuyARhciE1CFOez7rt3AZfFL4DMii4XcHNPh0AyjvP'
+
 });
 
 app.use(require('cors')());
@@ -15,22 +12,25 @@ app.use(require('body-parser').json());
 //API call to search/tweets to pull relevant tweets based on queries performed
 //retrieves json object of 100 tweets relevant to the query: "banana"
 app.get('/api/search', (req, res) => {
+  console.log("/api/search");
+
+//localhost:3000/api/search?q={{searchQuery}}
+let searchQuery = req.query.q;
+
   client
-  .get('search/tweets', { q: 'banana', count: 100 }
-)
-.then(search => {
-  res.send(search);
-})
-.catch(error => {
-  res.send(error);
-  console.log("couldn't search");
-})
-})
-;
+  .get('search/tweets', { q: searchQuery, count: 1 })
+  .then(search => {
+    res.send(search);
+  })
+  .catch(error => {
+    res.send(error);
+    console.log("couldn't search");
+  });
+});
 
 //API call to account/verify_credentials to pull user data onto endpoint /api/user
 app.get('/api/user', (req, res) => {
-  console.log("successful user obtained");
+  console.log("/api/user");
 
   client
     .get('account/verify_credentials')
