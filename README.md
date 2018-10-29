@@ -8,4 +8,7 @@ cd homework_2/TwitterApp
 npm i
 npm run start
 npm run build
+
+cp .env.example .env
+# Then update the API keys in ./TwitterApp/.env
 ```
