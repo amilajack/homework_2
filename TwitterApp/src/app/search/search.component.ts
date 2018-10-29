@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Tweet } from '../tweet';
+import { TwitterService } from '../twitter.service';
 
 @Component({
   selector: 'app-search',
@@ -12,13 +14,19 @@ export class SearchComponent implements OnInit {
     statusMessage: string = '';
     searchHistory = [];
 
-    constructor(){
+    //array of tweets
+    tweets: Tweet[] = [{id: 1234; text: 'blksjdf'}];
+    ids = [];
 
-    }
+    //search query
+    query = 'banana';
 
-    ngOnInit(){
+    //test object insertion
+    tweetshit;
+    bananaTweet: Tweet;
 
-    }
+    constructor(private twitter: TwitterService){    }
+
 
     checkString(input: String){
         if(input!==""){
@@ -34,5 +42,39 @@ export class SearchComponent implements OnInit {
         this.input='';
         
     }
+
+
+    //!! WARNING: BROKEN CODE
+    //start writing code here for searching twitter api
+    ngOnInit(){
+            this.twitter.search(this.query).subscribe(x => this.tweetshit = x);
+            printTweet();
+            //this.twitter.search('banana').subscribe(x => this.bananaTweet = x.data);
+            //this.getTweets();
+        }
+
+  // !!! trying to add tweets from /search/tweets endpoint
+  //this.twitter.search(this.query).subscribe(tweets => {
+  //  tweets.data.forEach( tweet => {
+  //    this.tweets.unshift(tweet);
+  //  });
+  //});
+
+    
+
+    getTweets() {
+    this.twitter.search(this.query).subscribe(tweets => {
+      tweets.data.forEach(tweet => {
+
+          this.tweets.push(tweet);
+        // if (this.ids.indexOf(tweet.id_str) < 0) {
+        //   this.ids.push(tweet.id_str);
+        //   this.tweets.unshift(tweet);
+        // }
+      })
+    });
+  }
+  
+
 
 }

@@ -28,8 +28,8 @@ export class TwitterService {
   return this.http.post<TwitterResponse>(`${environment.api}/${property}/${id}`, {state});
   }
 
-  search() {
-    return this.http.get<TwitterResponse>(`${environment.api}/search`);
+  search(q?: string) {
+    return this.http.get<TwitterResponse>(`${environment.api}/search?q=${q}`);
   }
 
 
